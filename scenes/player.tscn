@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://j7r8clek58wy" path="res://assets/lander.png" id="1_m0lwj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xl0lp"]
-size = Vector2(96, 104)
+size = Vector2(96, 96)
 
 [node name="Player" type="Area2D"]
 position = Vector2(48, 32)
@@ -15,5 +15,5 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_m0lwj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_xl0lp")
