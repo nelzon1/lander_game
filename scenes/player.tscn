@@ -6,8 +6,6 @@
 [node name="Player" type="Area2D"]
 position = Vector2(48, 32)
 script = ExtResource("1_10xdi")
-velocity = Vector2(0, -500)
-velocity_angle = 60
 metadata/_edit_group_ = true
 
 [node name="Lander" type="Sprite2D" parent="."]
