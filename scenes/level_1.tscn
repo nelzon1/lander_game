@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://0oq7vxcdynyq"]
+[gd_scene load_steps=5 format=3 uid="uid://0oq7vxcdynyq"]
 
 [ext_resource type="Texture2D" uid="uid://dpb25rqks12kl" path="res://assets/level_1.svg" id="1_0ck68"]
+[ext_resource type="Script" path="res://scenes/level_1.gd" id="1_swmbx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1y5j"]
 size = Vector2(184, 26)
@@ -9,18 +10,19 @@ size = Vector2(184, 26)
 size = Vector2(90.0854, 16.711)
 
 [node name="Level_1" type="Node2D"]
+script = ExtResource("1_swmbx")
 
 [node name="Level1" type="Sprite2D" parent="."]
 position = Vector2(500, 360)
 scale = Vector2(3.125, 3.13043)
 texture = ExtResource("1_0ck68")
 
-[node name="Ground" type="Area2D" parent="."]
+[node name="Ground" type="StaticBody2D" parent="."]
 
 [node name="Collision_ground" type="CollisionPolygon2D" parent="Ground"]
 polygon = PackedVector2Array(8, 576, 96, 560, 128, 528, 144, 472, 168, 456, 216, 640, 336, 632, 352, 584, 368, 424, 440, 352, 496, 328, 576, 624, 760, 624, 864, 424, 904, 416, 928, 336, 944, 304, 992, 352, 1000, 352, 1000, 720, 0, 720, 0, 568)
 
-[node name="Cieling" type="Area2D" parent="."]
+[node name="Cieling" type="StaticBody2D" parent="."]
 
 [node name="Collision_cieling" type="CollisionPolygon2D" parent="Cieling"]
 polygon = PackedVector2Array(0, 112, 8, 136, 112, 136, 296, 88, 424, 88, 600, 64, 728, 40, 776, 56, 896, 136, 936, 144, 1000, 208, 1000, 0, 0, 0)
@@ -31,7 +33,7 @@ polygon = PackedVector2Array(0, 112, 8, 136, 112, 136, 296, 88, 424, 88, 600, 64
 position = Vector2(668, 621)
 shape = SubResource("RectangleShape2D_p1y5j")
 
-[node name="Start" type="Area2D" parent="."]
+[node name="Start" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Start"]
 position = Vector2(276, 585.96)

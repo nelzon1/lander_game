@@ -10,3 +10,5 @@
 [node name="Player" parent="." instance=ExtResource("2_oa2m2")]
 position = Vector2(276, 551)
 scale = Vector2(0.6, 0.6)
+rotation_speed = 0.01
+gravity_strength = 10.0
