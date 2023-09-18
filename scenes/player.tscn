@@ -4,18 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://j7r8clek58wy" path="res://assets/lander.png" id="1_m0lwj"]
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(48, 32)
+position = Vector2(95, 102)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_10xdi")
 velocity_angle = 70.0
-rotation_speed = 10.0
 gravity_strength = 6.0
 metadata/_edit_group_ = true
 
 [node name="Lander" type="Sprite2D" parent="."]
+visibility_layer = 3
 position = Vector2(6.10352e-05, 0)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_m0lwj")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 polygon = PackedVector2Array(1, -57, -43, 10, -50, 41, 47, 41, 41, 10)

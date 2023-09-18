@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://chpcagx218uk3"]
+
+[ext_resource type="Script" path="res://scenes/level_view.gd" id="1_72yv7"]
+[ext_resource type="PackedScene" uid="uid://jduegwomuswu" path="res://scenes/player.tscn" id="2_oa2m2"]
+
+[node name="LevelView" type="Node2D"]
+script = ExtResource("1_72yv7")
+
+[node name="Player" parent="." instance=ExtResource("2_oa2m2")]
+position = Vector2(276, 551)
+scale = Vector2(0.6, 0.6)
+rotation_speed = 0.01
+gravity_strength = 10.0

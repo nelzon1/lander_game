@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://0oq7vxcdynyq"]
+[gd_scene load_steps=6 format=3 uid="uid://0oq7vxcdynyq"]
 
 [ext_resource type="Texture2D" uid="uid://dpb25rqks12kl" path="res://assets/level_1.svg" id="1_0ck68"]
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_swmbx"]
+[ext_resource type="PackedScene" uid="uid://jduegwomuswu" path="res://scenes/player.tscn" id="3_vhldv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1y5j"]
 size = Vector2(184, 26)
@@ -39,3 +40,10 @@ shape = SubResource("RectangleShape2D_p1y5j")
 position = Vector2(276, 585.96)
 scale = Vector2(1.33207, -1.19208)
 shape = SubResource("RectangleShape2D_d1obm")
+
+[node name="PlayerStartLocation" type="Marker2D" parent="."]
+position = Vector2(276, 552)
+
+[node name="Player" parent="." instance=ExtResource("3_vhldv")]
+position = Vector2(272, 544)
+scale = Vector2(0.6, 0.6)

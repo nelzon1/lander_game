@@ -17,11 +17,10 @@ var screen_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("move_left"):
 		velocity += vel_vec_left * acceleration
 		rotation += rotation_speed
@@ -30,12 +29,13 @@ func _process(delta):
 		rotation -= rotation_speed
 
 func _physics_process(delta):
-	
 	velocity += vec_gravity
 	#velocity = velocity.clamp(velocity_min, velocity_max)
 	var collision_info = move_and_collide(velocity * delta)
 	if (collision_info):
 		velocity = velocity.bounce(collision_info.get_normal())
 		velocity *= 0.5
-		
 
+func startLevel():
+	pass
+	

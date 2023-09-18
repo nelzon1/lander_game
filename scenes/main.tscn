@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://dp81en416q66i"]
+[gd_scene load_steps=3 format=3 uid="uid://dp81en416q66i"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_4qn4h"]
+[ext_resource type="PackedScene" uid="uid://mvelnlxov48l" path="res://scenes/start_screen.tscn" id="3_xrlea"]
 
 [node name="Main" type="Node"]
+script = ExtResource("1_4qn4h")
+
+[node name="StartScreen" parent="." instance=ExtResource("3_xrlea")]
+
+[connection signal="start_game" from="StartScreen" to="." method="on_start_game"]
