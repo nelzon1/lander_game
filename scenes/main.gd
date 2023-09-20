@@ -5,6 +5,7 @@ signal load_level(levelId)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	show_start_screen()
+	$BackgroundMusic.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

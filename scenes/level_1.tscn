@@ -1,17 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://0oq7vxcdynyq"]
+[gd_scene load_steps=5 format=3 uid="uid://0oq7vxcdynyq"]
 
 [ext_resource type="Texture2D" uid="uid://dpb25rqks12kl" path="res://assets/level_1.svg" id="1_0ck68"]
-[ext_resource type="Script" path="res://scenes/level_1.gd" id="1_swmbx"]
 [ext_resource type="PackedScene" uid="uid://jduegwomuswu" path="res://scenes/player.tscn" id="3_vhldv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1y5j"]
-size = Vector2(184, 26)
+size = Vector2(184, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1obm"]
 size = Vector2(90.0854, 16.711)
 
 [node name="Level_1" type="Node2D"]
-script = ExtResource("1_swmbx")
 
 [node name="Level1" type="Sprite2D" parent="."]
 position = Vector2(500, 360)
@@ -31,7 +29,7 @@ polygon = PackedVector2Array(0, 112, 8, 136, 112, 136, 296, 88, 424, 88, 600, 64
 [node name="Win" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Win"]
-position = Vector2(668, 621)
+position = Vector2(668, 608)
 shape = SubResource("RectangleShape2D_p1y5j")
 
 [node name="Start" type="StaticBody2D" parent="."]
@@ -45,5 +43,13 @@ shape = SubResource("RectangleShape2D_d1obm")
 position = Vector2(276, 552)
 
 [node name="Player" parent="." instance=ExtResource("3_vhldv")]
-position = Vector2(272, 544)
+position = Vector2(276, 551)
 scale = Vector2(0.6, 0.6)
+velocity_angle = 50.0
+gravity_strength = 10.0
+
+[connection signal="area_entered" from="Win" to="Player" method="_on_win_area_entered"]
+[connection signal="area_exited" from="Win" to="Player" method="_on_win_area_exited"]
+[connection signal="area_shape_entered" from="Win" to="Player" method="_on_win_area_shape_entered"]
+[connection signal="body_entered" from="Win" to="Player" method="_on_win_body_entered"]
+[connection signal="body_shape_entered" from="Win" to="Player" method="_on_win_body_shape_entered"]

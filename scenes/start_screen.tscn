@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://mvelnlxov48l"]
+[gd_scene load_steps=5 format=3 uid="uid://mvelnlxov48l"]
 
 [ext_resource type="Texture2D" uid="uid://dqphjetsmx4t" path="res://assets/space-ship-lander-astronaut-moon-game(4).png" id="1_x1waa"]
 [ext_resource type="Script" path="res://scenes/start_screen.gd" id="1_y3t27"]
+[ext_resource type="Theme" uid="uid://birwsb81nunqf" path="res://assets/themes/stormbreaker_menu.tres" id="3_dmnnd"]
 [ext_resource type="Texture2D" uid="uid://d3e5pt0lwm4rh" path="res://assets/title.png" id="3_fn6kk"]
 
 [node name="StartScreen" type="Node2D"]
@@ -28,10 +29,11 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("3_dmnnd")
 theme_override_colors/font_color = Color(0.509804, 0.596078, 0.0235294, 1)
 theme_override_colors/icon_hover_color = Color(0, 0.0823529, 0.45098, 0.772549)
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 46
 text = "Start Game"
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]

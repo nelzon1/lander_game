@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://chpcagx218uk3"]
+
+[ext_resource type="Script" path="res://scenes/level_view.gd" id="1_72yv7"]
+[ext_resource type="PackedScene" uid="uid://cbrr0n5wrukwm" path="res://scenes/hud.tscn" id="2_str17"]
+
+[node name="LevelView" type="Node2D"]
+script = ExtResource("1_72yv7")
+
+[node name="HUD" parent="." instance=ExtResource("2_str17")]
+top_level = true
+
+[connection signal="redo" from="HUD" to="." method="_on_hud_redo"]

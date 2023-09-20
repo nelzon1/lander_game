@@ -1,15 +1,85 @@
-[gd_scene load_steps=3 format=3 uid="uid://jduegwomuswu"]
+[gd_scene load_steps=15 format=3 uid="uid://jduegwomuswu"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_10xdi"]
 [ext_resource type="Texture2D" uid="uid://j7r8clek58wy" path="res://assets/lander.png" id="1_m0lwj"]
+[ext_resource type="Texture2D" uid="uid://cnp0w4cfpjcg1" path="res://assets/fire2.png" id="2_qb4ix"]
+[ext_resource type="AudioStream" uid="uid://bt4fr47bj5fco" path="res://assets/sounds/boom1.wav" id="3_kqet6"]
+[ext_resource type="AudioStream" uid="uid://b8mk26ahvaww0" path="res://assets/sounds/boom3.wav" id="4_fgccb"]
+[ext_resource type="AudioStream" uid="uid://dawlwdmb0oi3t" path="res://assets/sounds/boom5.wav" id="5_0gq7q"]
+[ext_resource type="AudioStream" uid="uid://8rih032xxi6l" path="res://assets/sounds/complete.ogg" id="6_go80d"]
+[ext_resource type="Texture2D" uid="uid://5rtindd24lwh" path="res://assets/Explosion.svg" id="7_cp10c"]
+
+[sub_resource type="Gradient" id="Gradient_ies7e"]
+offsets = PackedFloat32Array(0, 0.155556, 0.4, 0.637037, 1)
+colors = PackedColorArray(0.482353, 0, 0, 0, 0.481274, 7.09929e-07, 2.40654e-07, 1, 0.823503, 0.402842, 0.00975726, 1, 0.886081, 0.725198, 7.70092e-07, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_634xi"]
+gradient = SubResource("Gradient_ies7e")
+
+[sub_resource type="Curve" id="Curve_shgp4"]
+_data = [Vector2(0.108434, 0.410526), 0.0, 0.0, 0, 0, Vector2(0.463855, 0.621053), 0.0, 0.0, 0, 0, Vector2(0.885542, 0.915789), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xbbnj"]
+curve = SubResource("Curve_shgp4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uq64v"]
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 242.1
+initial_velocity_max = 284.21
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = -23.16
+damping_min = 40.0
+damping_max = 48.421
+angle_min = -143.0
+angle_max = 394.1
+scale_curve = SubResource("CurveTexture_xbbnj")
+color_ramp = SubResource("GradientTexture1D_634xi")
+turbulence_enabled = true
+attractor_interaction_enabled = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kd1lj"]
+particle_flag_disable_z = true
+direction = Vector3(1, -1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 242.1
+initial_velocity_max = 263.16
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = -8.42
+damping_min = 37.895
+damping_max = 37.895
+angle_min = -143.0
+scale_curve = SubResource("CurveTexture_xbbnj")
+color_ramp = SubResource("GradientTexture1D_634xi")
+turbulence_enabled = true
+attractor_interaction_enabled = false
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(95, 102)
+position = Vector2(105, 137)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_10xdi")
 velocity_angle = 70.0
 gravity_strength = 6.0
 metadata/_edit_group_ = true
+
+[node name="RocketParticlesRight" type="GPUParticles2D" parent="."]
+position = Vector2(45, 40)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_uq64v")
+texture = ExtResource("2_qb4ix")
+
+[node name="RocketParticlesLeft" type="GPUParticles2D" parent="."]
+position = Vector2(-45, 40)
+rotation = 3.14159
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_kd1lj")
+texture = ExtResource("2_qb4ix")
 
 [node name="Lander" type="Sprite2D" parent="."]
 visibility_layer = 3
@@ -19,3 +89,20 @@ texture = ExtResource("1_m0lwj")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(1, -57, -43, 10, -50, 41, 47, 41, 41, 10)
+
+[node name="CrashSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kqet6")
+
+[node name="CrashSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_fgccb")
+
+[node name="CrashSound3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_0gq7q")
+
+[node name="LandSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_go80d")
+
+[node name="Explosion" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.259477, 0.255895)
+texture = ExtResource("7_cp10c")

@@ -1,0 +1,204 @@
+[gd_scene load_steps=15 format=3 uid="uid://cbrr0n5wrukwm"]
+
+[ext_resource type="Texture2D" uid="uid://3pa7epfgk8xl" path="res://assets/speed_gauge.png" id="1_mvgbm"]
+[ext_resource type="Script" path="res://scenes/hud.gd" id="1_op15p"]
+[ext_resource type="Texture2D" uid="uid://inb6t57nncw7" path="res://assets/16x16dot.png" id="2_1edbe"]
+[ext_resource type="Theme" uid="uid://birwsb81nunqf" path="res://assets/themes/stormbreaker_menu.tres" id="3_ehbex"]
+[ext_resource type="Shader" path="res://scenes/hud.gdshader" id="3_yh751"]
+[ext_resource type="Texture2D" uid="uid://c4nc8lubjr1wr" path="res://assets/Redo.png" id="4_qfdd8"]
+[ext_resource type="Texture2D" uid="uid://cj6kv374r8v1m" path="res://assets/Redo_blue.png" id="5_4a8sh"]
+[ext_resource type="Texture2D" uid="uid://da40amauovimf" path="res://assets/Redo_orange.png" id="6_nlyv1"]
+[ext_resource type="AudioStream" uid="uid://u0vhj8uttfk" path="res://assets/sounds/on.ogg" id="8_p3tm3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jece"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 0.776471)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.988019, 0.762156, 0.221534, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4p0m"]
+bg_color = Color(0.505882, 0.505882, 0.505882, 0.380392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.988019, 0.762156, 0.221534, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxio3"]
+bg_color = Color(0, 0.584314, 0.101961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjdn6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.988235, 0.760784, 0.219608, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_53oul"]
+shader = ExtResource("3_yh751")
+shader_parameter/velocity = Vector2(0.1, 0.1)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_op15p")
+
+[node name="SpeedPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 504.0
+offset_right = 872.0
+offset_bottom = 544.0
+scale = Vector2(3.98657, 5.07815)
+theme_override_styles/panel = SubResource("StyleBoxFlat_2jece")
+
+[node name="SpeedLabelsContainer" type="HBoxContainer" parent="SpeedPanel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 42.0
+offset_bottom = 19.0
+alignment = 1
+
+[node name="SpeedLabel" type="Label" parent="SpeedPanel/SpeedLabelsContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("3_ehbex")
+theme_override_font_sizes/font_size = 14
+text = "100"
+
+[node name="SpeedUnitsLabel" type="Label" parent="SpeedPanel/SpeedLabelsContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("3_ehbex")
+theme_override_font_sizes/font_size = 12
+text = "m/s"
+horizontal_alignment = 2
+
+[node name="HealthPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 13.0
+offset_right = 52.0
+offset_bottom = 47.0
+scale = Vector2(6.21738, 2.57997)
+theme_override_styles/panel = SubResource("StyleBoxFlat_i4p0m")
+
+[node name="HealthBar" type="ProgressBar" parent="HealthPanel"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 5.0
+offset_right = 38.0
+offset_bottom = 29.0
+size_flags_vertical = 1
+theme = ExtResource("3_ehbex")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/fill = SubResource("StyleBoxFlat_oxio3")
+value = 100.0
+
+[node name="RedoContainer" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 912.0
+offset_top = 24.0
+offset_right = 952.0
+offset_bottom = 64.0
+scale = Vector2(1.5, 1.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_tjdn6")
+
+[node name="RedoButton" type="TextureButton" parent="RedoContainer"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 36.0
+offset_bottom = 36.0
+theme = ExtResource("3_ehbex")
+texture_normal = ExtResource("4_qfdd8")
+texture_pressed = ExtResource("5_4a8sh")
+texture_hover = ExtResource("6_nlyv1")
+
+[node name="CrashLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 264.0
+offset_right = 613.0
+offset_bottom = 334.0
+theme = ExtResource("3_ehbex")
+theme_override_colors/font_color = Color(0.807843, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.592157, 0.592157, 0.592157, 1)
+theme_override_colors/font_outline_color = Color(0, 0.34902, 0.34902, 1)
+theme_override_font_sizes/font_size = 70
+text = "CRASHED!!!"
+
+[node name="LandedLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 264.0
+offset_right = 597.0
+offset_bottom = 334.0
+size_flags_horizontal = 4
+theme = ExtResource("3_ehbex")
+theme_override_colors/font_color = Color(0.0745098, 0.627451, 0.164706, 1)
+theme_override_colors/font_shadow_color = Color(0.592157, 0.592157, 0.592157, 1)
+theme_override_colors/font_outline_color = Color(0, 0.34902, 0.34902, 1)
+theme_override_font_sizes/font_size = 70
+text = "LANDED!!!"
+
+[node name="RestartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 336.0
+offset_right = 545.0
+offset_bottom = 386.0
+theme = ExtResource("3_ehbex")
+theme_override_colors/font_color = Color(0.156863, 0.392157, 1, 1)
+theme_override_font_sizes/font_size = 34
+text = "Restart"
+
+[node name="RestartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_p3tm3")
+volume_db = 7.496
+
+[node name="SpeedControls" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 848.0
+offset_top = 568.0
+offset_right = 888.0
+offset_bottom = 608.0
+
+[node name="SpeedBackground" type="TextureRect" parent="SpeedControls"]
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_mvgbm")
+
+[node name="SpeedBall" type="TextureRect" parent="SpeedControls"]
+material = SubResource("ShaderMaterial_53oul")
+offset_left = 54.0
+offset_top = 54.0
+offset_right = 94.0
+offset_bottom = 94.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1edbe")
+
+[connection signal="pressed" from="RedoContainer/RedoButton" to="." method="_on_redo_button_pressed"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
